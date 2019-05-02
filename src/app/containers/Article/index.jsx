@@ -11,6 +11,7 @@ import ArticleMain from '../ArticleMain';
 import ErrorMain from '../ErrorMain';
 import nodeLogger from '../../helpers/logger.node';
 import ConsentBanner from '../ConsentBanner';
+import MPulseBeacon from '../MPulseBeacon';
 
 const logger = nodeLogger(__filename);
 
@@ -41,6 +42,7 @@ const ArticleContainer = ({ loading, error, data, bbcOrigin }) => {
                 href={`/${service}/articles/manifest.json`}
               />
             </Helmet>
+            {!isAmp && <MPulseBeacon />}
             <ConsentBanner />
             <HeaderContainer />
             {status === 200 ? (
