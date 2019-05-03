@@ -17,11 +17,13 @@
       "genre": "business"
     },
     "version": "v0.3.2",
-    "blockTypes": ["text", "paragraph", "subheadline", "fragment"],
-    "tags": {
-      "about": [],
-      "mentions": []
-    }
+    "blockTypes": [
+      "text",
+      "paragraph",
+      "subheadline",
+      "fragment"
+    ],
+    "tags": {}
   },
   "content": {
     "model": {

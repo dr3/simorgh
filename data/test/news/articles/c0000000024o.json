@@ -17,11 +17,13 @@
       "genre": null
     },
     "version": "v0.3.2",
-    "blockTypes": ["headline", "text", "paragraph", "fragment"],
-    "tags": {
-      "about": [],
-      "mentions": []
-    }
+    "blockTypes": [
+      "headline",
+      "text",
+      "paragraph",
+      "fragment"
+    ],
+    "tags": {}
   },
   "content": {
     "model": {
