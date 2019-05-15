@@ -1,9 +1,11 @@
 import onClient from '../../helpers/onClient';
 import getBaseUrl from './utils/getBaseUrl';
 import fetchData from './utils/fetchData';
+import Routes from '../index';
+import getRouteProps from './utils/getRouteProps';
 
-const getArticleInitialData = async ({ match }) => {
-  const { id, service } = match.params;
+const getArticleInitialData = async path => {
+  const { id, service } = getRouteProps(Routes, path).match.params;
 
   const baseUrl = onClient()
     ? getBaseUrl(window.location.origin)

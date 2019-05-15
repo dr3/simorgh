@@ -2,16 +2,9 @@
  * © Jordan Tart https://github.com/jtart
  * https://github.com/jtart/react-universal-app
  */
-import getRouteProps from '../getInitialData/utils/getRouteProps';
+import getArticleInitialData from '../getInitialData/article';
 
-const loadInitialData = async (url, routes) => {
-  const { route, match } = getRouteProps(routes, url);
-
-  if (!route.getInitialData) {
-    return {};
-  }
-
-  return route.getInitialData({ match });
-};
+// eslint-disable-next-line no-unused-vars
+const loadInitialData = async (url, routes) => getArticleInitialData(url);
 
 export default loadInitialData;

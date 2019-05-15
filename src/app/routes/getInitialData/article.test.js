@@ -1,6 +1,7 @@
 import baseUrl from './utils/getBaseUrl';
 import onClient from '../../helpers/onClient';
 import fetchData from './utils/fetchData';
+import getRouteProps from './utils/getRouteProps';
 
 process.env.SIMORGH_BASE_URL = 'https://www.SIMORGH_BASE_URL.com';
 
@@ -19,30 +20,30 @@ const fetchDataMockResponse = {
 jest.mock('./utils/fetchData', () => jest.fn());
 fetchData.mockImplementation(() => fetchDataMockResponse);
 
+const routes = [{ default: [] }];
+jest.mock('../index', () => [{ default: [] }]);
+
+jest.mock('./utils/getRouteProps');
+
 const getArticleInitialData = require('./article').default;
 
-const defaultIdParam = 'c0000000001o';
-const defaultServiceParam = 'news';
-const defaultAmpParam = '';
-let defaultContext;
+const id = 'c0000000001o';
+const service = 'news';
+const articlePath = '/news/articles/c0000000001o';
 
 describe('getArticleInitialData', () => {
   beforeEach(() => {
-    defaultContext = {
-      match: {
-        params: {
-          id: defaultIdParam,
-          service: defaultServiceParam,
-          amp: defaultAmpParam,
-        },
-      },
-    };
-
     jest.clearAllMocks();
+
+    getRouteProps.mockReturnValue({
+      match: { id, service },
+    });
   });
 
   it('fetches data and returns expected object', async () => {
-    const response = await getArticleInitialData(defaultContext);
+    const response = await getArticleInitialData(articlePath);
+
+    expect(getRouteProps).toHaveBeenCalledWith(routes, articlePath);
 
     expect(fetchData).toHaveBeenCalledWith({
       url: 'https://www.getBaseUrl.com/news/articles/c0000000001o.json',
@@ -54,32 +55,15 @@ describe('getArticleInitialData', () => {
     });
   });
 
-  describe('When on amp', () => {
-    beforeEach(() => {
-      defaultContext.match.params.amp = true;
-    });
-
-    it('returns isAmp as true', async () => {
-      const response = await getArticleInitialData(defaultContext);
-
-      expect(fetchData).toHaveBeenCalledWith({
-        url: 'https://www.getBaseUrl.com/news/articles/c0000000001o.json',
-      });
-
-      expect(response).toEqual({
-        pageData: 'foo',
-        status: 123,
-      });
-    });
-  });
-
   describe('When not on client', () => {
     beforeEach(() => {
       onClientMockResponse = false;
     });
 
     it('fetches data from SIMORGH_BASE_URL enviroment variable origin', async () => {
-      const response = await getArticleInitialData(defaultContext);
+      const response = await getArticleInitialData(articlePath);
+
+      expect(getRouteProps).toHaveBeenCalledWith(routes, articlePath);
 
       expect(fetchData).toHaveBeenCalledWith({
         url: 'https://www.SIMORGH_BASE_URL.com/news/articles/c0000000001o.json',
