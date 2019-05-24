@@ -23,6 +23,7 @@ const Blocks = ({ blocks, componentsToRender }) =>
         key={nanoid()}
         type={type}
         typeOfPreviousBlock={typeOfPreviousBlock}
+        index={index}
         {...model}
       />
     );

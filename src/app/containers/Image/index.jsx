@@ -30,7 +30,7 @@ const getIChefURL = (originCode, locator) => {
 const getRawImageSrc = (originCode, locator) =>
   originCode !== 'pips' ? getIChefURL(originCode, locator) : locator;
 
-const ImageContainer = ({ blocks }) => {
+const ImageContainer = ({ blocks, index }) => {
   if (!blocks) {
     return null;
   }
@@ -54,6 +54,7 @@ const ImageContainer = ({ blocks }) => {
   const copyright = getCopyright(copyrightHolder);
   const ratio = (height / width) * 100;
   const rawImageSrc = getRawImageSrc(originCode, locator);
+  const lazyLoad = index > 3;
 
   let Wrapper = GridItemConstrainedLargeNoMargin;
 
@@ -77,6 +78,7 @@ const ImageContainer = ({ blocks }) => {
         ratio={ratio}
         src={rawImageSrc}
         width={width}
+        lazyLoad={lazyLoad}
       />
     </Wrapper>
   );
