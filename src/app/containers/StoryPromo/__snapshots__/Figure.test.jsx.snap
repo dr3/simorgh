@@ -2,7 +2,7 @@
 
 exports[`StoryPromo Figure Container should render correctly 1`] = `
 <ForwardRef
-  ratio="35.2941"
+  ratio={35.294117647058826}
 >
   <Img
     alt="Alt text for an image"

@@ -16,7 +16,7 @@ const StoryPromoFigure = ({
     return null;
   }
 
-  const ratio = ((height / width) * 100).toFixed(4);
+  const ratio = (height / width) * 100;
   const src = `https://ichef.bbci.co.uk/news/660${path}`;
 
   return (
