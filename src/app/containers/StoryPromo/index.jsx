@@ -5,6 +5,7 @@ import StoryPromoComponent, {
   Summary,
   Link,
 } from '@bbc/psammead-story-promo';
+import { getPica } from '@bbc/gel-foundations/typography';
 import { storyItem } from '../../models/propTypes/storyItem';
 import StoryPromoFigure from './Figure';
 import Timestamp from '../Timestamp';
@@ -38,6 +39,9 @@ const StoryPromo = ({ item }) => {
           timestamp={timestamp * 1000}
           dateTimeFormat="YYYY-MM-DD"
           format="D MMMM YYYY"
+          padding={false}
+          script={script}
+          typographyFunc={getPica}
         />
       )}
     </Fragment>

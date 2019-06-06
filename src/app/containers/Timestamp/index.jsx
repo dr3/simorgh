@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { number, string, bool } from 'prop-types';
+import { number, string, bool, func } from 'prop-types';
 import Timestamp from '@bbc/psammead-timestamp';
 import {
   isValidDateTime,
@@ -16,6 +16,8 @@ const TimestampContainer = ({
   prefix,
   suffix,
   timezone,
+  padding,
+  typographyFunc,
 }) => {
   const { script } = useContext(ServiceContext);
   if (!isValidDateTime(new Date(timestamp))) {
@@ -26,6 +28,8 @@ const TimestampContainer = ({
     <Timestamp
       datetime={formatUnixTimestamp(timestamp, dateTimeFormat, timezone)}
       script={script}
+      padding={padding}
+      typographyFunc={typographyFunc}
     >
       {prefix ? `${prefix} ` : null}
       {showRelativeTime(timestamp, isRelative, format, timezone)}
@@ -42,6 +46,8 @@ TimestampContainer.propTypes = {
   timezone: string,
   prefix: string,
   suffix: string,
+  padding: bool,
+  typographyFunc: func,
 };
 
 TimestampContainer.defaultProps = {
@@ -50,6 +56,8 @@ TimestampContainer.defaultProps = {
   timezone: 'Europe/London',
   prefix: null,
   suffix: null,
+  padding: true,
+  typographyFunc: null,
 };
 
 export default TimestampContainer;
