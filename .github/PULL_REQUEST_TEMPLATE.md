@@ -1,3 +1,7 @@
+---
+projects: dr3/simorgh/1
+---
+
 Resolves #NUMBER
 
 **Overall change:** _A very high-level summary of easily-reproducible changes that can be understood by non-devs._
